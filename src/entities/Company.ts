@@ -17,8 +17,6 @@ export class Company extends BaseEntity {
     @Column({ name: 'name' })
     name: string;
 
-    @OneToMany((type) => Post, (post) => post.id, {
-      cascade: true,
-    })
+    @OneToMany((type) => Post, (post) => post.id)
     postList: Post[]
 }

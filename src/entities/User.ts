@@ -14,6 +14,9 @@ export class User extends BaseEntity {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
+    @Column({ name: 'email'})
+    email: string
+
     @ManyToOne((type) => Post, (post) => post.id)
     post: Post;
 }

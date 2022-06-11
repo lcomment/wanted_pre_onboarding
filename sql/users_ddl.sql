@@ -1,0 +1,14 @@
+insert into `preonboardingdb`.Users (`email`) values('kim@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('ko@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('kwon@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('lee@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('lim@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('park@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('choi@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('koo@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('han@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('hong@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('jang@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('james@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('john@wanted.com');
+insert into `preonboardingdb`.Users (`email`) values('mark@wanted.com');

@@ -181,7 +181,7 @@ export class WantedController {
             },
         },
     })
-    @ApiOperation({ summary: '요구사항2: 채용공고 수정' })
+    @ApiOperation({ summary: '요구사항3: 채용공고 삭제' })
     @Delete('')
     async deletePost(
         @Body('id') id: number,

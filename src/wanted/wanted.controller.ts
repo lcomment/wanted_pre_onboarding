@@ -148,6 +148,40 @@ export class WantedController {
         return await this.wantedService.updatePost(id, postDto);
     }
 
+    @ApiParam({
+        name: 'id',
+        description: '삭제하고 싶은 채용공고 id',
+        schema: {
+            example: {
+                id: 1,
+            },
+        },
+    })
+
+    @ApiResponse({
+        description: 'Not Exist Post',
+        status: 400,
+        schema: {
+            example: { 
+                success: false, 
+                errorMsg: {
+                    statusCode: 400,
+                    message: "No Exist Company",
+                    error: "Bad Request",    
+                } 
+            },
+        },
+    })
+    @ApiResponse({
+        description: 'Success to update',
+        status: 200,
+        schema: {
+            example: { 
+                success: true, 
+            },
+        },
+    })
+    @ApiOperation({ summary: '요구사항2: 채용공고 수정' })
     @Delete('')
     async deletePost(
         @Body('id') id: number,

@@ -87,8 +87,21 @@ export class WantedService {
         }
     }
 
+    async deletePost(id: number){
+        try{
+            const post = await this.postRepository.findOne({
+                where: { id: id},
+            });
 
-    async deletePost(id: Number){
+            if(!post){
+                throw new BadRequestException('Not Exist Post');
+            }
 
+            await this.postRepository.remove(post);
+            return { success: true };
+        }catch(error){
+            const errorMsg: any = error.response;
+            return { success: false, errorMsg }; 
+        }
     }
 }

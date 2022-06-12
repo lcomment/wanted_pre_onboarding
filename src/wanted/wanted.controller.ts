@@ -152,6 +152,6 @@ export class WantedController {
     async deletePost(
         @Body('id') id: number,
     ){
-
+        return await this.wantedService.deletePost(id);
     }
 }

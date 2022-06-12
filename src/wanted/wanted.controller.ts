@@ -14,12 +14,7 @@ import { WantedService } from './wanted.service';
 @Controller('wanted/post')
 export class WantedController {
     constructor(private wantedService: WantedService){ }
-
-    @Get('')
-    async getPostList(){
-        return await this.wantedService.getPostList();
-    }
-
+    
     @ApiBody({
         description: 'CreatePostDto 참고',
         schema: {

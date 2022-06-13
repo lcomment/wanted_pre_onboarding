@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Company } from 'src/entities/Company';
 import { Post } from 'src/entities/Post';
 import { Repository } from 'typeorm';
+import { DetailPostDto } from './dto/detail-post.dto';
 import { PostListDto } from './dto/post-list.dto';
 
 @Injectable()
@@ -104,6 +105,48 @@ export class SearchService {
 
                 return { success: true, keywordPosts };
             }
+        } catch(error){
+            const errorMsg: any = error.response;
+            return { success: false, errorMsg }; 
+        }
+    }
+
+    async getDetailPost(id: number){
+        try{
+            const post = await this.postRepository.findOne({
+                where: { id: id},
+                relations: ['company'],
+            });
+            
+            if(!post){
+                return new BadRequestException('');
+            }
+
+            const posts = await this.postRepository
+                .createQueryBuilder('posts')
+                .where('posts.companyid = :company', { company: post.company.id })
+                .getMany();
+
+            const idList: Array<number> = [];
+
+            posts.forEach((p) => {
+                if(p.id !== post.id){
+                    idList.push(p.id);
+                }
+            })
+
+            const detailPost = new DetailPostDto(
+                post.id, 
+                post.company.name, 
+                post.nation,
+                post.region,
+                post.position, 
+                post.bonus, 
+                post.skill,
+                post.content,
+                idList,
+            );
+            return { success: true, detailPost };
         } catch(error){
             const errorMsg: any = error.response;
             return { success: false, errorMsg }; 

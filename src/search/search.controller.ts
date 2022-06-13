@@ -1,5 +1,6 @@
 import { Get } from '@nestjs/common';
 import { Query } from '@nestjs/common';
+import { Param } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SearchService } from './search.service';
@@ -137,5 +138,13 @@ export class SearchController {
         @Query('key') key: string,
     ){
         return await this.searchService.getKeywordPost(key);
+    }
+
+    @ApiOperation({ summary: '요구사항5: 상세 페이지 가져오기' })
+    @Get(':id')
+    async getDetailPost(
+        @Param('id') id: number,
+    ){
+        return await this.searchService.getDetailPost(id);
     }
 }

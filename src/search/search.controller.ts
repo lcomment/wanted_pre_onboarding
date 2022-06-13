@@ -1,9 +1,10 @@
 import { Get } from '@nestjs/common';
+import { Query } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SearchService } from './search.service';
 
-@ApiTags('wanted/post/search')
+@ApiTags('채용 공고 검색')
 @Controller('wanted/post/search')
 export class SearchController {
     constructor(private searchService: SearchService){ }
@@ -59,5 +60,14 @@ export class SearchController {
     @Get('')
     async getPostList(){
         return await this.searchService.getPostList();
+    }
+
+
+    @ApiOperation({ summary: '요구사항4-2: 채용공고 검색 공고'})
+    @Get('keyword')
+    async getKeywordPost(
+        @Query('key') key: string,
+    ){
+        return await this.searchService.getKeywordPost(key);
     }
 }

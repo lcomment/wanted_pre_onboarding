@@ -2,7 +2,7 @@ import { Get } from '@nestjs/common';
 import { Query } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SearchService } from './search.service';
 
 @ApiTags('채용 공고 검색')
@@ -80,7 +80,8 @@ export class SearchController {
                 success: false, 
                 errorMsg: {
                     statusCode: 400,
-                    message: "BadRequest",
+                    message: "Not Exist Post",
+                    error: 'Bad Request',
                 }
             },
         },
@@ -140,6 +141,49 @@ export class SearchController {
         return await this.searchService.getKeywordPost(key);
     }
 
+    @ApiParam({
+        name: 'id',
+        description: '상세히 보고 싶은 채용공고의 id',
+        schema: {
+            example: {
+                id: 2,
+            },
+        },
+    })
+    @ApiResponse({
+        description: 'Error',
+        status: 400,
+        schema: {
+            example: { 
+                success: false, 
+                errorMsg: {
+                    statusCode: 400,
+                    message: "Not Exist Post",
+                    error: 'Bad Request',
+                }
+            },
+        },
+    })
+    @ApiResponse({
+        description: 'Success',
+        status: 200,
+        schema: {
+            example: {
+                success: true,
+                detailPost: {
+                    id: 2,
+                    company: '카카오페이',
+                    nation: '한국',
+                    region: '판교',
+                    position: 'back-end',
+                    bonus: 1000,
+                    skill: 'spring',
+                    content: '서류 제출 → 코딩테스트 → 사전과제 → 인터뷰 → 최종발표',
+                    otherPost: [6, 12, 14]
+                },
+            },
+        },
+    })
     @ApiOperation({ summary: '요구사항5: 상세 페이지 가져오기' })
     @Get(':id')
     async getDetailPost(

@@ -62,7 +62,75 @@ export class SearchController {
         return await this.searchService.getPostList();
     }
 
-
+    @ApiQuery({
+        name: 'key',
+        description: '검색할 키워드 입력',
+        schema: {
+            example: {
+                key: 2_000_000
+            },
+        },
+    })
+    @ApiResponse({
+        description: 'Error',
+        status: 400,
+        schema: {
+            example: { 
+                success: false, 
+                errorMsg: {
+                    statusCode: 400,
+                    message: "BadRequest",
+                }
+            },
+        },
+    })
+    @ApiResponse({
+        description: 'Success',
+        status: 200,
+        schema: {
+            example: {
+                success: true,
+                keywordPosts: [
+                    {
+                        id: 7,
+                        company: "카카오게임",
+                        nation: "한국",
+                        region: "강남",
+                        position: "게임 개발",
+                        bonus: 6000000,
+                        skill: "unity"
+                    },
+                    {
+                        id: 3,
+                        company: "원티드",
+                        nation: "한국",
+                        region: "강남",
+                        position: "front-end",
+                        bonus: 5000000,
+                        skill: "spring"
+                    },
+                    {
+                        id: 6,
+                        company: "카카오페이",
+                        nation: "한국",
+                        region: "동탄",
+                        position: "front-end",
+                        bonus: 4000000,
+                        skill: "vuejs"
+                    },
+                    {
+                        id: 5,
+                        company: "쿠팡",
+                        nation: "한국",
+                        region: "시흥",
+                        position: "back-end",
+                        bonus: 2000000,
+                        skill: "nestjs"
+                    }
+                ]
+            },
+        },
+    })
     @ApiOperation({ summary: '요구사항4-2: 채용공고 검색 공고'})
     @Get('keyword')
     async getKeywordPost(

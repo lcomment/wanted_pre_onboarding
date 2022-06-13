@@ -57,7 +57,7 @@ export class SearchService {
                     .getMany();
                 
                 if(posts.length === 0){
-                    throw new BadRequestException('');
+                    throw new BadRequestException('Not Exist Post');
                 }
                 
                 posts.forEach((post) => {
@@ -100,7 +100,7 @@ export class SearchService {
                 });
 
                 if(keywordPosts.length === 0){
-                    throw new BadRequestException('');
+                    throw new BadRequestException('Not Exist Post');
                 }
 
                 return { success: true, keywordPosts };
@@ -119,7 +119,7 @@ export class SearchService {
             });
             
             if(!post){
-                return new BadRequestException('');
+                throw new BadRequestException('Not Exist Post');
             }
 
             const posts = await this.postRepository

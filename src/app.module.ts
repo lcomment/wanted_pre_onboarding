@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { WantedModule } from './wanted/wanted.module';
 import { SearchModule } from './search/search.module';
+import { ApplimentModule } from './appliment/appliment.module';
 import * as config from '../ormConfig';
 
 @Module({
@@ -11,6 +12,7 @@ import * as config from '../ormConfig';
     TypeOrmModule.forRoot(config),
     WantedModule,
     SearchModule,
+    ApplimentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,11 +15,7 @@ export class WantedService {
         @InjectRepository(Company)
         private companyRepository: Repository<Company>,
     ){ }
-
-    async getPostList(){
-
-    }
-
+    
     async createPost(postDto: CreatePostDto){
         try{
             const company: Company = await this.companyRepository.findOne({
